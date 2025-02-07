@@ -43,6 +43,11 @@
       $(function() {
         $('#convertForm').submit(function(event) {
           event.preventDefault();
+
+          console.log("Form submitted!");
+          console.log($('#convertForm').serialize());
+
+
           $.ajax({
             url: '/api/convert',
             type: 'get',
