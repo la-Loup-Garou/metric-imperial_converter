@@ -14,42 +14,39 @@ test('read whole numbers correctly', async function () {
       const res1 = await fetch(url + '/api/convert?input=1gal');
       const data1 = await res1.json()
       assert.approximately(data1.initNum, 1, 0.001);
-     // assert.equal(data1.returnUnit, 'gal');
-     
-      } catch (err) {
+      
+        } catch (err) {
       throw new Error(err.responseText || err.message);
     }
 });
  
     test('read decimal number input', async function () {
-
-      try {
-
+     try {
+         
         const res2 = await fetch(url + '/api/convert?input=1.2mi');
-       const data2 = await res2.json();
-       assert.approximately(data2.initNum, 1.2, 0.001);
-      } catch (err) {
+        const data2 = await res2.json();
+        assert.approximately(data2.initNum, 1.2, 0.001);
+         
+         } catch (err) {
         throw new Error(err.responseText || err.message);
       }
     });
     
     test('read fraction number input' , async function () {
-
-      try {
-          
+     try {
+         
        const res3 = await fetch(url + '/api/convert?input=1/2mi');
        const data3 = await res3.json();
        assert.approximately(data3.initNum, 0.5, 0.001);
        assert.equal(data3.returnUnit, 'km');
-
-      } catch (err) {
+         
+       } catch (err) {
         throw new Error(err.responseText || err.message);
-      }
+       }
     });
 
     test('read fraction with decimal' , async function () {
-
-      try {
+     try {
              
        const res4 = await fetch(url + '/api/convert?input=1/2.1mi');
        const data4 = await res4.json();
@@ -61,20 +58,18 @@ test('read whole numbers correctly', async function () {
     });
 
     test('return error with double fraction',  async function () {
-
       try {
         const res5 = await fetch(url + '/api/convert?input=1//2mi');
         const data5 = await res5.text();
         assert.equal(data5, '"invalid number"');
         
       } catch (err) {
-        throw new Error(err.responseText || err.message);
+       throw new Error(err.responseText || err.message);
       }
     });
 
     test('return 1 when no numeric value entered',  async function () {
-
-      try {
+     try {
         const res6 = await fetch(url + '/api/convert?input=mi');
         const data6 = await res6.json();
         assert.equal(data6.initNum, 1);
@@ -85,8 +80,7 @@ test('read whole numbers correctly', async function () {
     });
 
     test('read input units correctly',  async function () {
-
-      try {
+     try {
         const res1 = await fetch(url + '/api/convert?input=1mi');
         const data1 = await res1.json();
         assert.equal(data1.initUnit, 'mi');
